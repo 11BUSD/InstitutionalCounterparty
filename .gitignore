@@ -33,3 +33,6 @@ mobile-*.png
 
 .vercel
 .vercel-old-link/
+.vercel-stuck-*/
+
+.vercel
