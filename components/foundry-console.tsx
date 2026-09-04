@@ -3,8 +3,8 @@
 import Link from "next/link";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowLeft, Bell, Briefcase, CaretDown, Check, CircleNotch, ClockCounterClockwise, FileMagnifyingGlass, Gauge, Info, List, LockKey, MagnifyingGlass, ShieldCheck, SignOut, SlidersHorizontal, Sparkle, Warning, X } from "@phosphor-icons/react";
-import { cases, reviews, timeline, type ViewId } from "@/lib/demo-data";
+import { ArrowLeft, Bell, Briefcase, CaretDown, Check, ClockCounterClockwise, Compass, FileMagnifyingGlass, Gauge, Info, List, LockKey, MagnifyingGlass, Plus, ShieldCheck, SignOut, SlidersHorizontal, Sparkle, UsersThree, X } from "@phosphor-icons/react";
+import { builders, cases, explorationSpaces, reviews, timeline, type ViewId } from "@/lib/demo-data";
 
 const views: {id: ViewId; label: string; icon: typeof Gauge}[] = [
   { id: "executive", label: "Executive", icon: Gauge }, { id: "operator", label: "Operator", icon: Briefcase },
@@ -15,10 +15,9 @@ function Status({ children }: {children: React.ReactNode}) { return <span classN
 
 export function FoundryConsole() {
   const [view, setView] = useState<ViewId>("executive");
-  const [caseId, setCaseId] = useState("CG-2407");
   const [mobileNav, setMobileNav] = useState(false);
   const [toast, setToast] = useState(false);
-  const selected = cases.find(c => c.id === caseId)!;
+  const selected = cases[0];
 
   const requestReview = () => { setToast(true); window.setTimeout(() => setToast(false), 2800); };
 
@@ -31,14 +30,14 @@ export function FoundryConsole() {
         {views.map(item => <button className={view === item.id ? 'active' : ''} onClick={() => {setView(item.id); setMobileNav(false)}} key={item.id}><item.icon size={19}/>{item.label}</button>)}
       </nav>
       <nav className="secondary-nav"><p>FOUNDRY</p><button><Sparkle size={19}/>Ventures</button><button><SlidersHorizontal size={19}/>Domain packs</button><button><ClockCounterClockwise size={19}/>Audit trail</button></nav>
-      <div className="user"><span>AH</span><div><b>Alex Hart</b><small>Foundry operator</small></div><SignOut size={18}/></div>
+      <div className="user"><span>PG</span><div><b>Peter</b><small>Foundry operator</small></div><SignOut size={18}/></div>
     </aside>
 
     <section className="console-main">
       <header className="console-top"><button className="menu-button" onClick={() => setMobileNav(true)}><List size={22}/></button><div className="breadcrumb"><span>Foundry</span><b>/</b><strong>{views.find(v=>v.id===view)?.label} view</strong></div><div className="top-actions"><button aria-label="Search"><MagnifyingGlass size={20}/></button><button aria-label="Notifications"><Bell size={20}/><i/></button><span className="environment"><i/> SYNTHETIC</span></div></header>
       <div className="console-content">
         <AnimatePresence mode="wait"><motion.div key={view} initial={{opacity:0,y:8}} animate={{opacity:1,y:0}} exit={{opacity:0,y:-6}} transition={{duration:.22}}>
-          {view === 'executive' && <Executive selected={selected} setCaseId={setCaseId} requestReview={requestReview}/>} 
+          {view === 'executive' && <Executive requestReview={requestReview}/>} 
           {view === 'operator' && <Operator selected={selected}/>} 
           {view === 'expert' && <Expert/>} 
           {view === 'audit' && <Audit/>} 
@@ -50,26 +49,29 @@ export function FoundryConsole() {
   </main>
 }
 
-function Executive({selected,setCaseId,requestReview}:{selected:typeof cases[number],setCaseId:(id:string)=>void,requestReview:()=>void}) {
+function Executive({requestReview}:{requestReview:()=>void}) {
   return <>
-    <div className="page-title"><div><p>EXECUTIVE VIEW</p><h1>Good morning, Alex.</h1><span>Three active cargo cases. One requires your attention.</span></div><button className="primary-action" onClick={requestReview}>Request review <ArrowLeft className="rotate" size={17}/></button></div>
+    <div className="page-title"><div><p>FOUNDRY OVERVIEW</p><h1>Good morning, Peter.</h1><span>See what your people are building, where they need help, and what could come next.</span></div><button className="primary-action" onClick={requestReview}><Plus size={17}/> Start an idea</button></div>
     <div className="metric-grid">
-      <article><span>ACTIVE CASES</span><strong>3</strong><small><i className="gold-dot"/> Across two product classes</small></article>
-      <article><span>EVIDENCE COVERAGE</span><strong>81<sup>%</sup></strong><small className="positive">↑ 6% this week</small></article>
-      <article><span>OPEN GAPS</span><strong>6</strong><small>2 release-blocking</small></article>
-      <article><span>RELEASE READY</span><strong>1</strong><small className="positive">All reviews approved</small></article>
+      <article><span>PEOPLE BUILDING</span><strong>4</strong><small><i className="gold-dot"/> Across one shared foundry</small></article>
+      <article><span>ACTIVE PROJECTS</span><strong>4</strong><small className="positive">2 moving forward this week</small></article>
+      <article><span>SPACES EXPLORED</span><strong>4</strong><small>Ideas can begin in any industry</small></article>
+      <article><span>NEEDS YOUR INPUT</span><strong>2</strong><small>One decision, one introduction</small></article>
     </div>
-    <div className="dashboard-grid">
-      <section className="panel cases-panel"><div className="panel-head"><div><span>CASE PORTFOLIO</span><h2>Active evidence cases</h2></div><button>View all →</button></div>
-        <div className="case-list">{cases.map(c => <button className={selected.id===c.id?'selected':''} onClick={()=>setCaseId(c.id)} key={c.id}><div className="case-icon">{c.product==='LNG'?'LG':'CR'}</div><div className="case-main"><div><b>{c.vessel}</b><Status>{c.status}</Status></div><span>{c.id} · {c.route}</span><div className="progress"><i style={{width:`${c.progress}%`}}/></div></div><div className="case-side"><b>{c.progress}%</b><small>{c.gaps} gaps</small></div></button>)}</div>
+    <div className="portfolio-layout">
+      <section className="panel builders-panel"><div className="panel-head"><div><span>YOUR BUILDERS</span><h2>What everyone is working on</h2></div><button>See all people →</button></div>
+        <div className="builder-list">{builders.map(builder => <button key={builder.name}><div className="builder-avatar">{builder.initials}</div><div className="builder-main"><div><b>{builder.name}</b><span>{builder.role}</span></div><h3>{builder.project}</h3><p>{builder.note}</p><div className="builder-progress"><i style={{width:`${builder.progress}%`}}/></div></div><div className="builder-meta"><Status>{builder.stage}</Status><small>{builder.space}</small><b>{builder.progress}%</b></div></button>)}</div>
       </section>
-      <section className="panel attention"><div className="panel-head"><div><span>NEEDS ATTENTION</span><h2>Release blockers</h2></div><Warning size={22}/></div>
-        <div className="alert-card"><div><Warning size={20}/></div><span><b>Quantity basis contradiction</b><small>{selected.id} · Ship figure and shore figure differ by 0.42%</small></span></div>
-        <div className="alert-card muted"><div><FileMagnifyingGlass size={20}/></div><span><b>Missing final gauging report</b><small>Evidence request ER-19 · due today</small></span></div>
-        <button className="text-action">Review {selected.id} <ArrowLeft className="rotate" size={16}/></button>
+      <aside className="overview-side">
+      <section className="panel attention"><div className="panel-head"><div><span>PETER&apos;S INBOX</span><h2>Where you can help</h2></div><UsersThree size={22}/></div>
+        <div className="alert-card"><div><Compass size={20}/></div><span><b>Introduce Maya to an operations lead</b><small>Her banking prototype needs one more workflow interview.</small></span></div>
+        <div className="alert-card muted"><div><FileMagnifyingGlass size={20}/></div><span><b>Review Sam&apos;s proof plan</b><small>A 15-minute decision will unblock the next test.</small></span></div>
+        <button className="text-action">Open your full inbox <ArrowLeft className="rotate" size={16}/></button>
       </section>
+      <section className="panel explore-card"><div className="panel-head"><div><span>OPEN EXPLORATION</span><h2>Explore any space</h2></div><Compass size={22}/></div><p>These are starting points, not fences. Builders can investigate any legitimate workflow and bring their own idea.</p><div>{explorationSpaces.map(space=><button key={space}>{space}</button>)}</div></section>
+      </aside>
     </div>
-    <section className="panel review-strip"><div><span>RELEASE READINESS · {selected.id}</span><h2>Two approvals still required</h2></div><div className="reviews">{reviews.map(r=><div key={r.label}><i className={r.state==='APPROVED'?'approved':''}>{r.state==='APPROVED'?<Check/>:<CircleNotch/>}</i><span><b>{r.label}</b><small>{r.owner} · {r.state}</small></span></div>)}</div></section>
+    <section className="panel freedom-strip"><Compass size={24}/><div><span>EXPLORE FREELY · RELEASE CAREFULLY</span><h2>Any legitimate industry can be investigated.</h2><p>Industry labels help organize ideas; they do not limit them. Evidence and safety checks only apply before consequential actions or release.</p></div></section>
   </>
 }
 

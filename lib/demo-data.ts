@@ -19,3 +19,12 @@ export const reviews = [
   { label: "Evidence review", owner: "S. Okafor", state: "PENDING" },
   { label: "Adversarial review", owner: "Unassigned", state: "NOT STARTED" },
 ];
+
+export const builders = [
+  { name: "Maya Chen", initials: "MC", role: "Venture lead", project: "Settlement exceptions", space: "Banking operations", stage: "PROTOTYPE", progress: 68, note: "Mapping exception handoffs between operations teams." },
+  { name: "Sam Okafor", initials: "SO", role: "Evidence architect", project: "Claims evidence room", space: "Insurance workflows", stage: "DESIGN PARTNER", progress: 82, note: "Testing a closed-file claim reconstruction with synthetic records." },
+  { name: "Elena Rossi", initials: "ER", role: "Product builder", project: "Asset ownership passport", space: "Real-world assets", stage: "EXPLORING", progress: 34, note: "Exploring ownership, valuation and encumbrance evidence." },
+  { name: "Noah Williams", initials: "NW", role: "Domain researcher", project: "Property review desk", space: "Real estate", stage: "VALIDATING", progress: 51, note: "Interviewing portfolio teams about appraisal review friction." },
+];
+
+export const explorationSpaces = ["Banking", "Insurance", "Real-world assets", "Real estate", "Trade & cargo", "Private markets", "Healthcare", "Energy", "Your own idea"];
