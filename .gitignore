@@ -32,3 +32,4 @@ desktop-*.png
 mobile-*.png
 
 .vercel
+.vercel-old-link/
