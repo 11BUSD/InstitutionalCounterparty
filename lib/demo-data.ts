@@ -7,11 +7,11 @@ export const cases = [
 ];
 
 export const timeline = [
-  { time: "02:14", title: "Notice of readiness tendered", source: "NOR-001.pdf", state: "VERIFIED" },
-  { time: "03:08", title: "Berth all fast", source: "Terminal log · row 118", state: "ATTESTED" },
-  { time: "04:22", title: "Custody transfer meter opened", source: "Meter batch 7A", state: "VERIFIED" },
-  { time: "07:46", title: "Quantity variance recorded", source: "Ship / shore comparison", state: "CONTRADICTION" },
-  { time: "09:15", title: "Final gauging document expected", source: "Evidence request ER-19", state: "MISSING" },
+  { time: "02:14", title: "Workflow milestone recorded", source: "Source record A-001", state: "VERIFIED" },
+  { time: "03:08", title: "Counterparty event confirmed", source: "Source record B-118", state: "ATTESTED" },
+  { time: "04:22", title: "Measurement set registered", source: "Structured input batch 7A", state: "VERIFIED" },
+  { time: "07:46", title: "Material variance surfaced", source: "Independent source comparison", state: "CONTRADICTION" },
+  { time: "09:15", title: "Required record expected", source: "Evidence request ER-19", state: "MISSING" },
 ];
 
 export const reviews = [

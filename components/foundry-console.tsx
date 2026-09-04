@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowLeft, Bell, Briefcase, Buildings, CaretDown, Check, ClockCounterClockwise, Compass, CreditCard, FileMagnifyingGlass, Gauge, Info, List, LockKey, MagnifyingGlass, Plus, ShieldCheck, SignOut, SlidersHorizontal, Sparkle, UsersThree, Wallet, X } from "@phosphor-icons/react";
-import { builders, cases, explorationSpaces, reviews, timeline, type ViewId } from "@/lib/demo-data";
+import { builders, explorationSpaces, reviews, timeline, type ViewId } from "@/lib/demo-data";
 
 const views: {id: ViewId; label: string; icon: typeof Gauge}[] = [
   { id: "executive", label: "Executive", icon: Gauge }, { id: "operator", label: "Operator", icon: Briefcase },
@@ -19,7 +19,6 @@ export function FoundryConsole() {
   const [view, setView] = useState<ConsoleView>("executive");
   const [mobileNav, setMobileNav] = useState(false);
   const [toast, setToast] = useState(false);
-  const selected = cases[0];
 
   const requestReview = () => { setToast(true); window.setTimeout(() => setToast(false), 2800); };
 
@@ -40,7 +39,7 @@ export function FoundryConsole() {
       <div className="console-content">
         <AnimatePresence mode="wait"><motion.div key={view} initial={{opacity:0,y:8}} animate={{opacity:1,y:0}} exit={{opacity:0,y:-6}} transition={{duration:.22}}>
           {view === 'executive' && <Executive requestReview={requestReview}/>} 
-          {view === 'operator' && <Operator selected={selected}/>} 
+          {view === 'operator' && <Operator/>} 
           {view === 'expert' && <Expert/>} 
           {view === 'audit' && <Audit/>} 
           {view === 'explain' && <Explain/>}
@@ -81,9 +80,9 @@ function Executive({requestReview}:{requestReview:()=>void}) {
   </>
 }
 
-function Operator({selected}:{selected:typeof cases[number]}) { return <><div className="page-title"><div><p>OPERATOR VIEW</p><h1>{selected.vessel}</h1><span>{selected.id} · {selected.route} · Synthetic closed-file reconstruction</span></div><Status>{selected.status}</Status></div><section className="panel timeline-panel"><div className="panel-head"><div><span>CHRONOLOGY</span><h2>What happened, in order</h2></div><span className="coverage">82% evidence coverage</span></div><div className="timeline">{timeline.map((t,i)=><div key={t.time}><time>{t.time}</time><i className={t.state.toLowerCase()}/><span><b>{t.title}</b><small>{t.source}</small></span><Status>{t.state}</Status>{i<timeline.length-1&&<em/>}</div>)}</div></section></> }
+function Operator() { return <><div className="page-title"><div><p>OPERATOR VIEW</p><h1>Synthetic evidence case</h1><span>EV-2407 · Institutional workflow · Closed-file reconstruction</span></div><Status>REVIEW</Status></div><section className="panel timeline-panel"><div className="panel-head"><div><span>CHRONOLOGY</span><h2>What happened, in order</h2></div><span className="coverage">82% evidence coverage</span></div><div className="timeline">{timeline.map((t,i)=><div key={t.time}><time>{t.time}</time><i className={t.state.toLowerCase()}/><span><b>{t.title}</b><small>{t.source}</small></span><Status>{t.state}</Status>{i<timeline.length-1&&<em/>}</div>)}</div></section></> }
 
-function Expert() { return <><div className="page-title"><div><p>EXPERT VIEW</p><h1>Quantity reconciliation</h1><span>Canonical calculation · Version 3.0.0 · Synthetic values</span></div><Status>CONTRADICTION</Status></div><div className="expert-grid"><section className="panel calc"><div className="panel-head"><div><span>DETERMINISTIC REPRODUCTION</span><h2>Ship / shore comparison</h2></div><LockKey size={22}/></div>{[['Ship delivered quantity','142,840.00 m³'],['Shore received quantity','142,240.07 m³'],['Observed difference','599.93 m³'],['Variance','0.4200%']].map(([a,b],i)=><div className={i===3?'total':''} key={a}><span>{a}</span><b>{b}</b></div>)}<p>Formula: |ship − shore| ÷ ship × 100. Reproduced from preserved inputs; no model calculation used.</p></section><section className="panel"><div className="panel-head"><div><span>EVIDENCE BASIS</span><h2>Input lineage</h2></div></div>{['Signed bill of lading','Ship measurement report','Terminal meter statement'].map((x,i)=><div className="evidence-row" key={x}><span><i>{i+1}</i>{x}</span><Status>{i===2?'ATTESTED':'VERIFIED'}</Status></div>)}</section></div></> }
+function Expert() { return <><div className="page-title"><div><p>EXPERT VIEW</p><h1>Record reconciliation</h1><span>Canonical calculation · Version 3.0.0 · Generic synthetic values</span></div><Status>CONTRADICTION</Status></div><div className="expert-grid"><section className="panel calc"><div className="panel-head"><div><span>DETERMINISTIC REPRODUCTION</span><h2>Independent source comparison</h2></div><LockKey size={22}/></div>{[['Source A recorded value','10,000.00 units'],['Source B recorded value','9,958.00 units'],['Observed difference','42.00 units'],['Variance','0.4200%']].map(([a,b],i)=><div className={i===3?'total':''} key={a}><span>{a}</span><b>{b}</b></div>)}<p>Formula and inputs are versioned and reproduced by deterministic code. Domain-specific calculation methods remain private.</p></section><section className="panel"><div className="panel-head"><div><span>EVIDENCE BASIS</span><h2>Input lineage</h2></div></div>{['Primary signed record','Independent measurement record','Counterparty attestation'].map((x,i)=><div className="evidence-row" key={x}><span><i>{i+1}</i>{x}</span><Status>{i===2?'ATTESTED':'VERIFIED'}</Status></div>)}</section></div></> }
 
 function Audit() { return <><div className="page-title"><div><p>COUNSEL / AUDIT VIEW</p><h1>Release control</h1><span>Every gate must pass. One blocker stops publication.</span></div><ShieldCheck size={32}/></div><section className="panel audit-table"><div className="panel-head"><div><span>TRIPLE REVIEW</span><h2>Independent decisions</h2></div></div>{reviews.map((r,i)=><div className="audit-row" key={r.label}><span className="audit-num">0{i+1}</span><div><b>{r.label}</b><small>{i===0?'Domain eligibility and bounded scope confirmed.':i===1?'Quantity contradiction requires resolution.':'Begins after evidence review closes.'}</small></div><span>{r.owner}</span><Status>{r.state}</Status></div>)}<div className="release-block"><LockKey size={22}/><span><b>Production release is locked</b><small>Evidence and adversarial approvals are missing. Human authority is required.</small></span></div></section></> }
 
