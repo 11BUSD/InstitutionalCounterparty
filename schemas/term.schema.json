@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "CanonicalTerm",
+  "type": "object",
+  "required": [
+    "canonical_id",
+    "display_term",
+    "definition",
+    "semantic_version"
+  ],
+  "properties": {
+    "canonical_id": {
+      "type": "string",
+      "pattern": "^[A-Z0-9_]+$"
+    },
+    "display_term": {
+      "type": "string"
+    },
+    "definition": {
+      "type": "string"
+    },
+    "semantic_version": {
+      "type": "string"
+    },
+    "translations": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string"
+      }
+    }
+  }
+}

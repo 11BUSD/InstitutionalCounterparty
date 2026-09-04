@@ -1,0 +1,3 @@
+# Company and Capital Model
+
+Successful ventures may become independently financeable companies. Foundry value can come from minority equity where incubation warrants it, transparent platform/shared-service fees, infrastructure usage and portfolio appreciation. Avoid permanent gross-revenue burdens that damage investability. Capital follows proof: Foundry resources -> design partner -> paying pilot/customer funding -> repeatable revenue/seed -> institutional scale/growth financing -> independent financing. Track capital efficiency; fundraising is not itself success. Publicity follows verifiable financings, customers, deployments, acquisitions or other independently supportable milestones.

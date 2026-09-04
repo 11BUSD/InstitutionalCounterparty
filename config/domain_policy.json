@@ -1,0 +1,34 @@
+{
+  "policy_version": "3.0.0",
+  "default": "REVIEW",
+  "allowed_reference_families": [
+    "cargo_hydrocarbons",
+    "banking_operations",
+    "private_assets",
+    "real_estate",
+    "commercial_metals",
+    "high_value_art",
+    "insurance_operations"
+  ],
+  "prohibited": [
+    "weapons",
+    "explosives",
+    "explosive_precursors",
+    "chemical_warfare_agents",
+    "chemical_warfare_precursors",
+    "biological_agents",
+    "biological_precursors",
+    "nuclear_material",
+    "radiological_material",
+    "controlled_dual_use_precursors"
+  ],
+  "special_review": [
+    "fertilizer_supply_chains",
+    "unknown_chemical_feedstocks",
+    "controlled_materials",
+    "sanctions_sensitive_operations",
+    "money_movement",
+    "securities_execution",
+    "regulated_professional_opinion"
+  ]
+}

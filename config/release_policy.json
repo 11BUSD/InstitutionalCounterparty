@@ -1,0 +1,18 @@
+{
+  "version": "3.0.0",
+  "required_reviews": [
+    "DOMAIN",
+    "EVIDENCE",
+    "ADVERSARIAL"
+  ],
+  "approval_rule": "UNANIMOUS",
+  "block_on": [
+    "BLOCKER",
+    "UNPROVEN_COMPATIBILITY",
+    "UNSUPPORTED_MATERIAL_CLAIM",
+    "MISSING_ROLLBACK",
+    "CALCULATION_REPRODUCIBILITY_FAILURE",
+    "PROHIBITED_DOMAIN",
+    "CRITICAL_SECURITY_FINDING"
+  ]
+}

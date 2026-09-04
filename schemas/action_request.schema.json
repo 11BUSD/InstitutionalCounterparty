@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ActionRequest",
+  "type": "object",
+  "required": [
+    "action_id",
+    "actor_id",
+    "tenant_id",
+    "domain_id",
+    "task_id"
+  ],
+  "properties": {
+    "action_id": {
+      "type": "string"
+    },
+    "actor_id": {
+      "type": "string"
+    },
+    "tenant_id": {
+      "type": "string"
+    },
+    "domain_id": {
+      "type": "string"
+    },
+    "task_id": {
+      "type": "string"
+    },
+    "human_approval_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  },
+  "additionalProperties": false
+}

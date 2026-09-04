@@ -1,0 +1,32 @@
+# Secrets / local env
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# Customer/private data
+data/private/
+data/customer/
+customers/
+exports/private/
+
+# Python
+__pycache__/
+*.py[cod]
+
+# Editors / OS
+.DS_Store
+.vscode/
+.idea/
+
+# Build artifacts
+dist/
+build/
+coverage/
+.next/
+node_modules/
+.vercel/
+*.tsbuildinfo
+desktop-*.png
+mobile-*.png

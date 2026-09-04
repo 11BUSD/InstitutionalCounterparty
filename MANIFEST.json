@@ -1,0 +1,247 @@
+[
+  {
+    "path": ".gitignore",
+    "bytes": 259,
+    "sha256": "28d407f05f97304f17f2a9654a08c49db8bcdcac210ebd2e824aa5cf3ada60b3"
+  },
+  {
+    "path": "AGENTS.md",
+    "bytes": 1749,
+    "sha256": "266861392432c93a16a32d6adc91a09ffa44f0ff6f0c12d1fcc97a0a5ab0785a"
+  },
+  {
+    "path": "CAPABILITY_MATRIX.md",
+    "bytes": 924,
+    "sha256": "d5b8b59a83548879713718f7dc685e66eb4b1b0d21ead2a5ab55c32d2114ee64"
+  },
+  {
+    "path": "DECISION_LOG.md",
+    "bytes": 391,
+    "sha256": "0db6b3ce909b8459fe6674cfa5a8720963d1f6796230acd3175eb159b5a3eac1"
+  },
+  {
+    "path": "README.md",
+    "bytes": 6836,
+    "sha256": "e20f2b70348a4f9edd305c583da779dd72233ad67c3d80faf866ccd1547df2d2"
+  },
+  {
+    "path": "SECURITY.md",
+    "bytes": 480,
+    "sha256": "e02af774c2aca5f3f55e269cf5f568c9b16a87a3cad695bc9e00d712c00debe4"
+  },
+  {
+    "path": "TECH_DEBT_REGISTER.md",
+    "bytes": 389,
+    "sha256": "4484a58189c1bc07f8c0686296dbb159962e2036bb5db41cb8ca54fe049d15cf"
+  },
+  {
+    "path": "config/domain_policy.json",
+    "bytes": 802,
+    "sha256": "25e4eb9e28113435ba58d271c2ba794c2db49d51746004a42d171a4c24fdf3c4"
+  },
+  {
+    "path": "config/release_policy.json",
+    "bytes": 358,
+    "sha256": "2f1c224c701cfcbdacd18f3d8c3520edee6a0817a018f43fdb10fefe572e9cbd"
+  },
+  {
+    "path": "docs/architecture/GRAPH_MODEL.md",
+    "bytes": 291,
+    "sha256": "d1cfb46e830b367c09d44e13f5ea4bc3ca45de4dad4cd860f7669dd631217775"
+  },
+  {
+    "path": "docs/architecture/SYSTEM_ARCHITECTURE.md",
+    "bytes": 866,
+    "sha256": "25f02757fa55677551039828e8eda1c1a8b7a3d0fd4225ae71093acdc6cbd01b"
+  },
+  {
+    "path": "docs/build/BUILD_SEQUENCE.md",
+    "bytes": 946,
+    "sha256": "5625b49c80af33178a911e9476692422b47864513deb1be13260ad059176064c"
+  },
+  {
+    "path": "docs/build/CODEX_MASTER_PROMPT.md",
+    "bytes": 1147,
+    "sha256": "a4e77cffc95abc178b97ead8639d2726dce6d9d1a88f5398b6b8fce2348320ef"
+  },
+  {
+    "path": "docs/build/NO_DRIFT_PROTOCOL.md",
+    "bytes": 626,
+    "sha256": "716967d519e5ce073e3b9daf586b0aedcd6cd0cc5ba777c1ced3f130657cc3cf"
+  },
+  {
+    "path": "docs/commercial/COUNTERPARTY_INTELLIGENCE.md",
+    "bytes": 582,
+    "sha256": "4b3d49ed5d17c4819a584e556e14a6424f2ba0b1c5ef6a7ea95156f5c9bb98f1"
+  },
+  {
+    "path": "docs/commercial/INSTITUTIONAL_FUNNEL.md",
+    "bytes": 495,
+    "sha256": "5263073e1afb7b4fe97e4fd1963a5524c5bb9459d20ef8da085667535f12eea8"
+  },
+  {
+    "path": "docs/governance/AGENT_ECONOMY.md",
+    "bytes": 496,
+    "sha256": "77843a3c2f5405ba1d3a2270e9b5c025c2a326afaebfe48bbeab95837d6a2feb"
+  },
+  {
+    "path": "docs/governance/PORTFOLIO_GOVERNANCE.md",
+    "bytes": 459,
+    "sha256": "22a8bc96e97865b8ce2c74b1ea930cb79a07bfc28ecd55f461614ed72c61fe14"
+  },
+  {
+    "path": "docs/governance/TERMINOLOGY_CONSTITUTION.md",
+    "bytes": 423,
+    "sha256": "8d5bfa1e80edf5298762b789a9a7539bb21b15a3a7b3af61db97aeb7dc418135"
+  },
+  {
+    "path": "docs/governance/TRIPLE_REVIEW.md",
+    "bytes": 320,
+    "sha256": "673e113d434b3969b7e6ca040970728fce820f0d4684764e4868a838a479b954"
+  },
+  {
+    "path": "docs/portfolio/COMPANY_AND_CAPITAL_MODEL.md",
+    "bytes": 698,
+    "sha256": "d6af4e08d2bee2901cb7335304516da83677572e5f84348e02c08216222ca4d9"
+  },
+  {
+    "path": "docs/portfolio/FOUNDER_SIMPLE_EXPLANATION.md",
+    "bytes": 614,
+    "sha256": "409378605d61d2aa0ddfdf2f44f963de9cfee8f3156f9159b7771d318a746eb3"
+  },
+  {
+    "path": "docs/security/CONTROL_READINESS.md",
+    "bytes": 352,
+    "sha256": "038c1bf29a48125c4aea02b1b44e09aabf6199675f7e7547f4298f556b1feed2"
+  },
+  {
+    "path": "docs/security/MULTILINGUAL_SECURITY.md",
+    "bytes": 318,
+    "sha256": "db92cf5cc168cef6380b69eff5367d16336b6e8d115f89c6a56ab1d49ffa7862"
+  },
+  {
+    "path": "docs/security/THREAT_MODEL.md",
+    "bytes": 832,
+    "sha256": "3499a212935f288fdba9ffdd6443e0081dde368a17cc3bfe01cb1eaf2338d54b"
+  },
+  {
+    "path": "docs/ux/INSTITUTIONAL_UX_STANDARD.md",
+    "bytes": 534,
+    "sha256": "0372756eb641774516b0cb890e1566ed2e46ff83545b1a1e169aac3c1748e5f5"
+  },
+  {
+    "path": "domain-packs/banking/README.md",
+    "bytes": 404,
+    "sha256": "bac8e92f9710ba8d60ba3178368dbc177f99b9d92fc6b9e1a5caa46c186d87f3"
+  },
+  {
+    "path": "domain-packs/cargo/README.md",
+    "bytes": 589,
+    "sha256": "06dc52569f399efd874fbcfe59e518affa473230d2f642b21a89131bd70ab4db"
+  },
+  {
+    "path": "domain-packs/metals/README.md",
+    "bytes": 359,
+    "sha256": "1735cdc6638ae0441c028d32d2aeae3e6369b2aa4fef88248d661392119a457a"
+  },
+  {
+    "path": "domain-packs/private-assets/README.md",
+    "bytes": 435,
+    "sha256": "4ccaec8ca906b7542751a3a0aba56080f9ed467fd92b88ed06f359f718db528f"
+  },
+  {
+    "path": "domain-packs/real-estate/README.md",
+    "bytes": 268,
+    "sha256": "3a268336837429e0540f6b6b195a71b01989aec8cc265ce3864d0551594a0b72"
+  },
+  {
+    "path": "examples/run_demo.py",
+    "bytes": 552,
+    "sha256": "731c617d006ea99086e5df70af4c4de13ee44e36a4db547ab68530b38009a5c2"
+  },
+  {
+    "path": "repo-templates/private/README.md",
+    "bytes": 313,
+    "sha256": "b243c1eaf061c6bb1c139949bb60e089ae475c9eab1ef0426c65b92ffa584ded"
+  },
+  {
+    "path": "repo-templates/public/README.md",
+    "bytes": 618,
+    "sha256": "2d515c85a92145c688f1d545f6c908b8baa068e08b9cf561f6628add9d40ea3a"
+  },
+  {
+    "path": "schemas/action_request.schema.json",
+    "bytes": 602,
+    "sha256": "fd3214cd95211e4eeeacb1f6ceb797464164faa51286b582c2e6ec176bad4e58"
+  },
+  {
+    "path": "schemas/term.schema.json",
+    "bytes": 597,
+    "sha256": "3a8d34600b8da799743961d53c9fb37638dbc2dacf752d48735981459cacc6f3"
+  },
+  {
+    "path": "schemas/venture_candidate.schema.json",
+    "bytes": 721,
+    "sha256": "5f37fc45aebd05b13eca1f462f9cda5e1ac394bce77677330c3951897ba9a358"
+  },
+  {
+    "path": "src/foundry/__init__.py",
+    "bytes": 58,
+    "sha256": "4319896ee98fab0716c2e6e0e8d2086a6d5a75497a62a4f9f238948a07b1ff3d"
+  },
+  {
+    "path": "src/foundry/authority.py",
+    "bytes": 547,
+    "sha256": "5a6c0a18c2ecfe1d0e3e8ac2f81035cfc0ebb1d173ce77654d160fa986061f18"
+  },
+  {
+    "path": "src/foundry/domain_policy.py",
+    "bytes": 1048,
+    "sha256": "eff54bf6134affac6bc31bd5548cd313a9f1dc8899ad4d2ef826a76620d34115"
+  },
+  {
+    "path": "src/foundry/economics.py",
+    "bytes": 823,
+    "sha256": "28e12276c5f48768442552d43d2af4762f114609b35480c1705a04a8436efbef"
+  },
+  {
+    "path": "src/foundry/evidence.py",
+    "bytes": 518,
+    "sha256": "73f38d26e2eaeffd37e8a52b71bb75538acd2c4810ac85413f78fa6aeac062eb"
+  },
+  {
+    "path": "src/foundry/models.py",
+    "bytes": 1556,
+    "sha256": "1e0b722934718d075635129813ebc331ccca688567aa5a0ed5a531e11fe297be"
+  },
+  {
+    "path": "src/foundry/opportunity.py",
+    "bytes": 1175,
+    "sha256": "c4d600ce1c3a432e197aba54bfb26e11bc61dacb6a822e6bb5214089fa18d5ef"
+  },
+  {
+    "path": "src/foundry/portfolio.py",
+    "bytes": 888,
+    "sha256": "2436c34632239d20fcfeb92896a31ccad712206c47711d2014ffcbe34930befe"
+  },
+  {
+    "path": "src/foundry/publication.py",
+    "bytes": 286,
+    "sha256": "4cc21a1ce17b5bad42a149e3dddfd294774f71cfc530227467b034d8cec036bc"
+  },
+  {
+    "path": "src/foundry/release_gate.py",
+    "bytes": 998,
+    "sha256": "d99774acefeda55f1e591004da2642bbe297a081ebeca3b8004998c058fcfc02"
+  },
+  {
+    "path": "src/foundry/terminology.py",
+    "bytes": 899,
+    "sha256": "9368061b7145b0e61c6adb54d1cd2acac8ac01ed1e61b78c0c7c36bf09351cc8"
+  },
+  {
+    "path": "tests/test_core.py",
+    "bytes": 2975,
+    "sha256": "a44e2593ad8708e4cd6475ee216efeb97104d990939a767ffb96ee738b71ef2e"
+  }
+]

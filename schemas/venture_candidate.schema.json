@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "VentureCandidate",
+  "type": "object",
+  "required": [
+    "venture_id",
+    "name",
+    "domain_family",
+    "workflow",
+    "buyer",
+    "estimated_acv_usd"
+  ],
+  "properties": {
+    "venture_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1
+    },
+    "domain_family": {
+      "type": "string",
+      "minLength": 1
+    },
+    "workflow": {
+      "type": "string",
+      "minLength": 1
+    },
+    "buyer": {
+      "type": "string",
+      "minLength": 1
+    },
+    "estimated_acv_usd": {
+      "type": "number",
+      "minimum": 0
+    }
+  },
+  "additionalProperties": true
+}
