@@ -3,18 +3,20 @@
 import Link from "next/link";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowLeft, Bell, Briefcase, CaretDown, Check, ClockCounterClockwise, Compass, FileMagnifyingGlass, Gauge, Info, List, LockKey, MagnifyingGlass, Plus, ShieldCheck, SignOut, SlidersHorizontal, Sparkle, UsersThree, X } from "@phosphor-icons/react";
+import { ArrowLeft, Bell, Briefcase, Buildings, CaretDown, Check, ClockCounterClockwise, Compass, CreditCard, FileMagnifyingGlass, Gauge, Info, List, LockKey, MagnifyingGlass, Plus, ShieldCheck, SignOut, SlidersHorizontal, Sparkle, UsersThree, Wallet, X } from "@phosphor-icons/react";
 import { builders, cases, explorationSpaces, reviews, timeline, type ViewId } from "@/lib/demo-data";
 
 const views: {id: ViewId; label: string; icon: typeof Gauge}[] = [
   { id: "executive", label: "Executive", icon: Gauge }, { id: "operator", label: "Operator", icon: Briefcase },
   { id: "expert", label: "Expert", icon: FileMagnifyingGlass }, { id: "audit", label: "Audit", icon: ShieldCheck }, { id: "explain", label: "Explain", icon: Info },
 ];
+type ConsoleView = ViewId | "ventures" | "domains" | "activity" | "payments";
+const screenLabels: Record<ConsoleView,string> = { executive:"Executive view", operator:"Operator view", expert:"Expert view", audit:"Audit view", explain:"Explain view", ventures:"Ventures", domains:"Domain packs", activity:"Audit trail", payments:"Payments" };
 
 function Status({ children }: {children: React.ReactNode}) { return <span className={`status ${String(children).toLowerCase().replace(' ','-')}`}>{children}</span> }
 
 export function FoundryConsole() {
-  const [view, setView] = useState<ViewId>("executive");
+  const [view, setView] = useState<ConsoleView>("executive");
   const [mobileNav, setMobileNav] = useState(false);
   const [toast, setToast] = useState(false);
   const selected = cases[0];
@@ -29,12 +31,12 @@ export function FoundryConsole() {
         <p>VIEWS</p>
         {views.map(item => <button className={view === item.id ? 'active' : ''} onClick={() => {setView(item.id); setMobileNav(false)}} key={item.id}><item.icon size={19}/>{item.label}</button>)}
       </nav>
-      <nav className="secondary-nav"><p>FOUNDRY</p><button><Sparkle size={19}/>Ventures</button><button><SlidersHorizontal size={19}/>Domain packs</button><button><ClockCounterClockwise size={19}/>Audit trail</button></nav>
+      <nav className="secondary-nav"><p>FOUNDRY</p><button className={view==='ventures'?'active':''} onClick={()=>{setView('ventures');setMobileNav(false)}}><Sparkle size={19}/>Ventures</button><button className={view==='domains'?'active':''} onClick={()=>{setView('domains');setMobileNav(false)}}><SlidersHorizontal size={19}/>Domain packs</button><button className={view==='activity'?'active':''} onClick={()=>{setView('activity');setMobileNav(false)}}><ClockCounterClockwise size={19}/>Audit trail</button><button className={view==='payments'?'active':''} onClick={()=>{setView('payments');setMobileNav(false)}}><CreditCard size={19}/>Payments</button></nav>
       <div className="user"><span>PG</span><div><b>Peter</b><small>Foundry operator</small></div><SignOut size={18}/></div>
     </aside>
 
     <section className="console-main">
-      <header className="console-top"><button className="menu-button" onClick={() => setMobileNav(true)}><List size={22}/></button><div className="breadcrumb"><span>Foundry</span><b>/</b><strong>{views.find(v=>v.id===view)?.label} view</strong></div><div className="top-actions"><button aria-label="Search"><MagnifyingGlass size={20}/></button><button aria-label="Notifications"><Bell size={20}/><i/></button><span className="environment"><i/> SYNTHETIC</span></div></header>
+      <header className="console-top"><button className="menu-button" onClick={() => setMobileNav(true)}><List size={22}/></button><div className="breadcrumb"><span>Foundry</span><b>/</b><strong>{screenLabels[view]}</strong></div><div className="top-actions"><button aria-label="Search" onClick={requestReview}><MagnifyingGlass size={20}/></button><button aria-label="Notifications" onClick={requestReview}><Bell size={20}/><i/></button><span className="environment"><i/> SYNTHETIC</span></div></header>
       <div className="console-content">
         <AnimatePresence mode="wait"><motion.div key={view} initial={{opacity:0,y:8}} animate={{opacity:1,y:0}} exit={{opacity:0,y:-6}} transition={{duration:.22}}>
           {view === 'executive' && <Executive requestReview={requestReview}/>} 
@@ -42,10 +44,14 @@ export function FoundryConsole() {
           {view === 'expert' && <Expert/>} 
           {view === 'audit' && <Audit/>} 
           {view === 'explain' && <Explain/>}
+          {view === 'ventures' && <Ventures onAction={requestReview}/>} 
+          {view === 'domains' && <DomainPacks onAction={requestReview}/>} 
+          {view === 'activity' && <Activity/>} 
+          {view === 'payments' && <Payments onAction={requestReview}/>} 
         </motion.div></AnimatePresence>
       </div>
     </section>
-    <AnimatePresence>{toast && <motion.div className="toast" initial={{opacity:0,y:20}} animate={{opacity:1,y:0}} exit={{opacity:0,y:12}}><Check size={18}/> Review request staged for human approval.</motion.div>}</AnimatePresence>
+    <AnimatePresence>{toast && <motion.div className="toast" initial={{opacity:0,y:20}} animate={{opacity:1,y:0}} exit={{opacity:0,y:12}}><Check size={18}/> Control connected in demo mode. Live execution remains human-gated.</motion.div>}</AnimatePresence>
   </main>
 }
 
@@ -82,3 +88,18 @@ function Expert() { return <><div className="page-title"><div><p>EXPERT VIEW</p>
 function Audit() { return <><div className="page-title"><div><p>COUNSEL / AUDIT VIEW</p><h1>Release control</h1><span>Every gate must pass. One blocker stops publication.</span></div><ShieldCheck size={32}/></div><section className="panel audit-table"><div className="panel-head"><div><span>TRIPLE REVIEW</span><h2>Independent decisions</h2></div></div>{reviews.map((r,i)=><div className="audit-row" key={r.label}><span className="audit-num">0{i+1}</span><div><b>{r.label}</b><small>{i===0?'Domain eligibility and bounded scope confirmed.':i===1?'Quantity contradiction requires resolution.':'Begins after evidence review closes.'}</small></div><span>{r.owner}</span><Status>{r.state}</Status></div>)}<div className="release-block"><LockKey size={22}/><span><b>Production release is locked</b><small>Evidence and adversarial approvals are missing. Human authority is required.</small></span></div></section></> }
 
 function Explain() { return <><div className="page-title"><div><p>EXPLAIN VIEW</p><h1>The five-year-old version</h1><span>The same canonical state, written in plain language.</span></div><Sparkle size={32}/></div><div className="explain-grid">{[['1','We collect the puzzle pieces','Documents and measurements are the pieces. We keep the originals safe and remember where every piece came from.'],['2','We check whether they fit','The computer does the maths the exact same way every time. If two pieces disagree, it shows the disagreement.'],['3','Three grown-ups inspect it','A domain expert, an evidence expert and a challenger each review the work. Any one of them can stop it.'],['4','A person turns the final key','The system cannot publish, move money or change important rules by itself. A properly authorized human decides.']].map(([n,t,b])=><article className="panel explain-card" key={n}><span>{n}</span><h2>{t}</h2><p>{b}</p></article>)}</div></> }
+
+function Ventures({onAction}:{onAction:()=>void}) { return <><div className="page-title"><div><p>VENTURE PORTFOLIO</p><h1>Ideas becoming businesses.</h1><span>Explore broadly, prove a buyer exists, then earn the right to scale.</span></div><button className="primary-action" onClick={onAction}><Plus size={17}/> New venture</button></div><div className="venture-grid">{builders.map((v,i)=><button className="panel venture-card" key={v.project} onClick={onAction}><span>0{i+1} · {v.space}</span><h2>{v.project}</h2><p>{v.note}</p><div><Status>{v.stage}</Status><b>{v.name}</b></div><div className="builder-progress"><i style={{width:`${v.progress}%`}}/></div></button>)}</div></> }
+
+const evidenceLayers = [
+  ["01","Source records","Preserve original files, system exports, measurements and communications with identity and timestamps."],
+  ["02","Structured facts","Extract facts into a versioned schema without changing the original evidence."],
+  ["03","Rules & calculations","Reproduce material calculations deterministically with units, inputs and formula versions."],
+  ["04","Gaps & contradictions","Keep missing, conflicting and uncertain information visible instead of guessing."],
+  ["05","Decision package","Give each role a clear view, a forensic drill-down and an auditable approval path."],
+];
+function DomainPacks({onAction}:{onAction:()=>void}) { return <><div className="page-title"><div><p>DOMAIN PACKS</p><h1>One evidence spine. Many specialties.</h1><span>Reusable structure is shared. Proprietary domain methods remain private.</span></div><button className="primary-action" onClick={onAction}><Plus size={17}/> Propose a space</button></div><section className="panel evidence-spine"><div className="panel-head"><div><span>REUSABLE APPLICATION BLUEPRINT</span><h2>How every evidence-backed product is built</h2></div><ShieldCheck size={22}/></div>{evidenceLayers.map(([n,title,body])=><button key={n} onClick={onAction}><i>{n}</i><span><b>{title}</b><small>{body}</small></span><ArrowLeft className="rotate" size={15}/></button>)}</section><div className="domain-grid">{explorationSpaces.map((space,i)=><button className="panel domain-card" key={space} onClick={onAction}><span>{String(i+1).padStart(2,'0')}</span><h2>{space}</h2><p>{space==='Trade & cargo'?'Private specialization available. Public view exposes the evidence pattern—not proprietary LNG methods or document logic.':'Start with the buyer, workflow, evidence and measurable value. Add specialist rules only after validation.'}</p><b>{space==='Trade & cargo'?'PRIVATE SPECIALIZATION':'OPEN FOR EXPLORATION'} →</b></button>)}</div></> }
+
+function Activity() { const events=[['13:42','Peter','Opened portfolio overview','READ'],['12:18','Maya Chen','Updated venture hypothesis','CHANGE'],['Yesterday','System gate','Blocked unsupported release claim','BLOCKED'],['02 Sep','Sam Okafor','Attached synthetic evidence package','VERIFIED']]; return <><div className="page-title"><div><p>AUDIT TRAIL</p><h1>Nothing important happens silently.</h1><span>Human actions, system decisions and evidence changes appear in one chronology.</span></div><ClockCounterClockwise size={32}/></div><section className="panel activity-list"><div className="panel-head"><div><span>RECENT ACTIVITY</span><h2>Foundry event history</h2></div></div>{events.map(([time,actor,event,state])=><div key={time+event}><time>{time}</time><span><b>{event}</b><small>{actor}</small></span><Status>{state}</Status></div>)}</section></> }
+
+function Payments({onAction}:{onAction:()=>void}) { return <><div className="page-title"><div><p>PAYMENTS</p><h1>Help builders get paid.</h1><span>Collect from clients, account for fees, and pay eligible participants through verified rails.</span></div><button className="primary-action" onClick={onAction}><Wallet size={17}/> Begin Stripe setup</button></div><div className="payment-summary"><article className="panel"><span>AVAILABLE TO PAY</span><strong>$24,680</strong><small>Synthetic balance · no live funds</small></article><article className="panel"><span>NEXT PAYOUT WINDOW</span><strong>2–5</strong><small>Business-day planning target, not a guarantee</small></article><article className="panel"><span>ESTIMATED FEES</span><strong>$742</strong><small>Placeholder until country and pricing are verified</small></article></div><div className="payment-layout"><section className="panel rail-list"><div className="panel-head"><div><span>PAYOUT RAILS</span><h2>Choose the right route per recipient</h2></div></div><button onClick={onAction}><CreditCard size={22}/><span><b>Stripe Connect</b><small>Hosted or embedded onboarding, requirements monitoring, balances and bank payouts.</small></span><Status>RECOMMENDED</Status></button><button onClick={onAction}><Buildings size={22}/><span><b>Bank payout</b><small>Default institutional rail. Timing and availability depend on the connected account.</small></span><Status>PLANNED</Status></button><button onClick={onAction}><Wallet size={22}/><span><b>USDC payout</b><small>Stripe private preview with material platform, recipient and country restrictions.</small></span><Status>LIMITED PREVIEW</Status></button><button onClick={onAction}><Compass size={22}/><span><b>USDT / USDG</b><small>Research only. No operational provider or compliance path has been approved.</small></span><Status>RESEARCH</Status></button></section><section className="panel payout-flow"><div className="panel-head"><div><span>CONTROLLED FLOW</span><h2>From client payment to payout</h2></div></div>{[['1','Client pays','Payment is confirmed by a signed webhook event.'],['2','Funds settle','Provider balance becomes available; fees are recorded.'],['3','Contribution is approved','Deterministic ledger calculates shares; an authorized human approves.'],['4','Provider pays out','Stripe or an approved rail sends funds and returns final status.']].map(([n,t,b])=><div key={n}><i>{n}</i><span><b>{t}</b><small>{b}</small></span></div>)}<p><LockKey size={14}/> Big Gs never marks a payout complete before the provider confirms it.</p></section></div></> }
